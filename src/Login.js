@@ -7,13 +7,15 @@ class Login extends Component {
     return (
       <div className="Login">
         <div className="Login-header">
-          <img
-               src={ logo }
-               className="Login-logo"
-               alt="logo" />
-          <h2 className="Login-title">教学资源管理系统</h2>
-          <div className="Login-login-form">
-            <WrappedNormalLoginForm />
+          <div className="Login-main">
+            <img
+                 src={ logo }
+                 className="Login-logo"
+                 alt="logo" />
+            <h2 className="Login-title">教学资源管理系统</h2>
+            <div className="Login-login-form">
+              <WrappedNormalLoginForm />
+            </div>
           </div>
         </div>
       </div>);
