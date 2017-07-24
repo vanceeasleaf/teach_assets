@@ -1,22 +1,6 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background: white;
-  background-size:cover;
-  height: 100%;
-  padding: 150px;
-  color: white;position: fixed;width:100%; 
-}
-
-.App-intro {
-  font-size: large;
-}
-.App-login-form{max-width:400px;margin:60px auto;}
-.App-title{ font-size:30px;font-weight:normal;}
+/*
+* @Author: vance
+* @Date:   2017-07-23 17:30:10
+* @Last Modified by:   vance
+* @Last Modified time: 2017-07-24 15:38:40
+*/
