@@ -2,11 +2,12 @@
 * @Author: vance
 * @Date:   2017-07-24 11:25:13
 * @Last Modified by:   vance
-* @Last Modified time: 2017-07-24 11:25:15
+* @Last Modified time: 2017-07-24 14:32:43
 */
 #components-form-demo-normal-login .login-form {
   max-width: 300px;
 }
+#components-form-demo-normal-login{text-align: left;}
 #components-form-demo-normal-login .login-form-forgot {
   float: right;
 }

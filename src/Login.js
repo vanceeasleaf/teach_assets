@@ -2,12 +2,13 @@
 * @Author: vance
 * @Date:   2017-07-24 11:23:39
 * @Last Modified by:   vance
-* @Last Modified time: 2017-07-24 11:31:58
+* @Last Modified time: 2017-07-24 14:26:55
 */
 
 
 import React, { Component } from 'react';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import "./Login.css";
 const FormItem = Form.Item;
 
 class NormalLoginForm extends Component {
@@ -23,6 +24,7 @@ class NormalLoginForm extends Component {
     const {getFieldDecorator} = this.props.form;
     return (
       <Form
+            id="components-form-demo-normal-login"
             onSubmit={ this.handleSubmit }
             className="login-form">
         <FormItem>

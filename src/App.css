@@ -8,18 +8,15 @@
 }
 
 .App-header {
-  background: black;
+  background: white;
   background-size:cover;
   height: 100%;
-  padding: 200px;
+  padding: 150px;
   color: white;position: fixed;width:100%; 
 }
 
 .App-intro {
   font-size: large;
 }
+.App-login-form{max-width:400px;margin:60px auto;}
 .App-title{ font-size:30px;font-weight:normal;}
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
