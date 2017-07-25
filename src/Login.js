@@ -1,3 +1,9 @@
+/*
+* @Author: vance
+* @Date:   2017-07-23 17:30:10
+* @Last Modified by:   vance
+* @Last Modified time: 2017-07-25 11:33:48
+*/
 import React, { Component } from 'react';
 import logo from './images/logo.jpg';
 import WrappedNormalLoginForm from './WrappedNormalLoginForm';
