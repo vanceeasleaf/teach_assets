@@ -8,8 +8,7 @@ class Login extends Component {
       <div className="Login">
         <div className="Login-header">
           <div className="Login-main">
-            <img
-                 src={ logo }
+            <img src={ logo }
                  className="Login-logo"
                  alt="logo" />
             <h2 className="Login-title">教学资源管理系统</h2>

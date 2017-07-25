@@ -7,16 +7,11 @@ import registerServiceWorker from './registerServiceWorker';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 ReactDOM.render(<Router>
                   <div>
-                    <Route
-                           exact
+                    <Route exact
                            path="/"
                            component={ Login } />
-                    <Route
-                           path="/home"
-                           component={ Home } />
-                    <Route
-                           path="/inbox"
-                           component={ Login } />
+                    <Route path="/home" component={ Home } />
+                    <Route path="/inbox" component={ Login } />
                   </div>
                 </Router>, document.getElementById('root'));
 registerServiceWorker();

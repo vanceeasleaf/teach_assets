@@ -28,8 +28,7 @@ class NormalLoginForm extends Component {
   render() {
     const {getFieldDecorator} = this.props.form;
     return (
-      <Form
-            id="components-form-demo-normal-login"
+      <Form id="components-form-demo-normal-login"
             onSubmit={ this.handleSubmit }
             className="login-form">
         <FormItem>
@@ -39,11 +38,7 @@ class NormalLoginForm extends Component {
                 message: 'Please input your username!'
               }],
             })(
-              <Input
-                     prefix={ <Icon
-                                    type="user"
-                                    style={ { fontSize: 13 } } /> }
-                     placeholder="Username" />
+              <Input prefix={ <Icon type="user" style={ { fontSize: 13 } } /> } placeholder="Username" />
             ) }
         </FormItem>
         <FormItem>
@@ -53,10 +48,7 @@ class NormalLoginForm extends Component {
                 message: 'Please input your Password!'
               }],
             })(
-              <Input
-                     prefix={ <Icon
-                                    type="lock"
-                                    style={ { fontSize: 13 } } /> }
+              <Input prefix={ <Icon type="lock" style={ { fontSize: 13 } } /> }
                      type="password"
                      placeholder="Password" />
             ) }
@@ -70,11 +62,8 @@ class NormalLoginForm extends Component {
                 Remember me
               </Checkbox>
             ) }
-          <a
-             className="login-form-forgot"
-             href="">Forgot password</a>
-          <Button
-                  type="primary"
+          <a className="login-form-forgot" href="">Forgot password</a>
+          <Button type="primary"
                   htmlType="submit"
                   className="login-form-button">
             Log in
