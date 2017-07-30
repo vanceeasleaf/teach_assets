@@ -2,14 +2,17 @@
 * @Author: vance
 * @Date:   2017-07-28 17:10:19
 * @Last Modified by:   vance
-* @Last Modified time: 2017-07-30 11:00:30
+* @Last Modified time: 2017-07-30 15:00:03
 */
 
 import React, { Component } from 'react';
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+import { Row, Col } from 'antd';
 import './Home.css';
 import EditableTable from '../components/EditableTable'
 const {SubMenu} = Menu;
+
+const MenuItemGroup = Menu.ItemGroup;
 const {Header, Content, Footer, Sider} = Layout;
 class TeacherHome extends Component {
   render() {
@@ -17,20 +20,36 @@ class TeacherHome extends Component {
       <Layout className="teacher-home">
         <Header className="header">
           <div className="logo" />
-          <Menu theme="dark"
-                mode="horizontal"
-                defaultSelectedKeys={ ['2'] }
-                style={ { lineHeight: '64px' } }>
-            <Menu.Item key="1">
-              nav 1
-            </Menu.Item>
-            <Menu.Item key="2">
-              nav 2
-            </Menu.Item>
-            <Menu.Item key="3">
-              nav 3
-            </Menu.Item>
-          </Menu>
+          <Row>
+            <Col span={ 10 } offset={ 0 }>
+              <Menu theme="dark"
+                    mode="horizontal"
+                    defaultSelectedKeys={ ['2'] }
+                    style={ { lineHeight: '64px' } }>
+                <Menu.Item key="1">
+                  nav 1
+                </Menu.Item>
+                <Menu.Item key="2">
+                  nav 2
+                </Menu.Item>
+                <Menu.Item key="3">
+                  nav 3
+                </Menu.Item>
+              </Menu>
+            </Col>
+            <Col span={ 1 } offset={ 11 }>
+              <Menu theme="dark"
+                    mode="horizontal"
+                    defaultSelectedKeys={ ['1'] }
+                    style={ { lineHeight: '64px' } }>
+                <SubMenu title={ <span>欢迎您，管理员</span> }>
+                  <Menu.Item key="setting:2">
+                    注销
+                  </Menu.Item>
+                </SubMenu>
+              </Menu>
+            </Col>
+          </Row>
         </Header>
         <Content style={ { padding: '0 50px' } }>
           <Breadcrumb style={ { margin: '12px 0' } }>
