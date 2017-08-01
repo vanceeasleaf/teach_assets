@@ -8,7 +8,7 @@ module.exports = {
     // First application
     {
       name      : 'teach_assets_fe',
-      script    : 'npm start',
+      script    : 'scripts/start.js',
       env: {
         COMMON_VARIABLE: 'true'
       },
