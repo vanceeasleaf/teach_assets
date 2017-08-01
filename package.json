@@ -48,6 +48,8 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
+    "deploy":"pm2 deploy ecosystem.config.js production",
+    "deploys":"pm2 deploy ecosystem.config.js production setup",
     "test": "node scripts/test.js --env=jsdom"
   },
   "devDependencies": {
