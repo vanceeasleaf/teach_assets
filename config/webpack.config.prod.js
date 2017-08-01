@@ -94,10 +94,7 @@ module.exports = {
       'react-native': 'react-native-web',
     },
     plugins: [
-    ['import', {
-              libraryName: 'antd',
-              style: 'css'
-            }],
+
       // Prevents users from importing files from outside of src/ (or node_modules/).
       // This often causes confusion because we only process files within src/ with babel.
       // To fix this, we prevent you from importing files out of src/ -- if you'd like to,
@@ -169,7 +166,12 @@ module.exports = {
         include: paths.appSrc,
         loader: require.resolve('babel-loader'),
         options: {
-          
+             plugins: [
+            ['import', {
+              libraryName: 'antd',
+              style: 'css'
+            }],
+          ],
           compact: true,
         },
       },
