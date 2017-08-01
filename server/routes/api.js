@@ -2,7 +2,7 @@
  * @Author: YangZhou
  * @Date:   2017-07-08 15:55:44
  * @Last Modified by:   vance
- * @Last Modified time: 2017-07-26 10:09:34
+ * @Last Modified time: 2017-08-02 01:29:32
  */
 'use strict';
 var express = require('express');
@@ -28,11 +28,10 @@ function authUser(user, res) {
     exp: expires
   }, app.get('jwtTokenSecret'));
   return res.json({
-    status: 200,
-    token: token,
-    expires: expires,
+    access_token: token,
     user: user
-  });
+  }
+  );
 }
 router.post('/user', [bodyParser.json(), jwtauth], function(req, res, next) {
   var _id = req.body._id;
@@ -65,12 +64,12 @@ router.post('/user', [bodyParser.json(), jwtauth], function(req, res, next) {
   });
 });
 router.post('/auth', function(req, res, next) {
-  var username = req.body.username
+  var username = req.body.username; // form-data 
   if (!username) {
     // user not found
     return res.json({
       status: 401,
-      msg: "用户不存在"
+      msg: "请输入用户名"
     });
   }
   User.findOne({
@@ -86,7 +85,7 @@ router.post('/auth', function(req, res, next) {
     if (!user) {
       return res.json({
         status: 401,
-        msg: "用户不存在"
+        msg: "用户名不存在"
       });
     }
     authUser(user, res)

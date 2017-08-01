@@ -2,13 +2,14 @@
 * @Author: vance
 * @Date:   2017-07-24 11:23:39
 * @Last Modified by:   vance
-* @Last Modified time: 2017-07-24 17:04:37
+* @Last Modified time: 2017-08-02 01:39:46
 */
 
 
 import React, { Component } from 'react';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import { Link } from 'react-router-dom';
+import ajax from './ajax';
 import "./Login.css";
 Component.contextTypes = {
   router: React.PropTypes.object.isRequired
@@ -17,13 +18,23 @@ const FormItem = Form.Item;
 class NormalLoginForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
-    this.context.router.history.push("/home")
-    return;
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
+
+
+
+        ajax.post('http://localhost:3010/api/auth', values)
+          .then(function(data) {
+            console.log(data);
+
+            this.context.router.history.push("/admin_home")
+          }.bind(this))
+      //  .then(json => dispatch(receivePosts(json)))
+      // .catch(error => dispatch(requestExceptions(error)));
       }
     });
+
   }
   render() {
     const {getFieldDecorator} = this.props.form;
@@ -32,7 +43,7 @@ class NormalLoginForm extends Component {
             onSubmit={ this.handleSubmit }
             className="login-form">
         <FormItem>
-          { getFieldDecorator('userName', {
+          { getFieldDecorator('username', {
               rules: [{
                 required: true,
                 message: 'Please input your username!'

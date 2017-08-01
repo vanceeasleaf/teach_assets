@@ -2,7 +2,7 @@
 * @Author: vance
 * @Date:   2017-07-24 11:25:13
 * @Last Modified by:   vance
-* @Last Modified time: 2017-07-24 17:17:25
+* @Last Modified time: 2017-08-02 01:38:35
 */
 #components-form-demo-normal-login .login-form {
   max-width: 300px;
@@ -36,4 +36,4 @@
 }
 .Login-login-form{max-width:400px;margin:60px auto;}
 .Login-title{ font-size:30px;font-weight:normal;}
-.Login-main{background: white;padding:40px;max-width: 500px;margin:0 auto;}
+.Login-main{background: white;padding:40px;width: 500px;margin:0 auto;}

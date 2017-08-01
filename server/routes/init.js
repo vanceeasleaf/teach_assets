@@ -5,8 +5,8 @@ var User = models.User;
 /* GET home page. */
 router.get('/', function(req, res, next) {
   var user = new User({
-    email: 'nowind_lee@qq.com',
-    name: 'Freewind'
+    username: 'admin',
+    password: 'admin'
   });
   user.save();
   res.send('Data inited');
