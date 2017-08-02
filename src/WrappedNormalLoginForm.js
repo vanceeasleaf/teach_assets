@@ -2,7 +2,7 @@
 * @Author: vance
 * @Date:   2017-07-24 11:23:39
 * @Last Modified by:   vance
-* @Last Modified time: 2017-08-02 01:39:46
+* @Last Modified time: 2017-08-02 18:35:31
 */
 
 
@@ -27,8 +27,13 @@ class NormalLoginForm extends Component {
         ajax.post('http://localhost:3010/api/auth', values)
           .then(function(data) {
             console.log(data);
-
-            this.context.router.history.push("/admin_home")
+            var path = "teacher_home";
+            if (data.user.course == "admin")
+              path = "/admin_home";
+            if (data.user.course == "paike")
+              path = "/paike_home";
+            localStorage.setItem('user', JSON.stringfy(data.user));
+            this.context.router.history.push(path);
           }.bind(this))
       //  .then(json => dispatch(receivePosts(json)))
       // .catch(error => dispatch(requestExceptions(error)));

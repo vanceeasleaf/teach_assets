@@ -6,7 +6,9 @@ var User = models.User;
 router.get('/', function(req, res, next) {
   var user = new User({
     username: 'admin',
-    password: 'admin'
+    password: 'admin',
+    realname: '管理员',
+    course: 'admin'
   });
   user.save();
   res.send('Data inited');

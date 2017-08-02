@@ -2,7 +2,7 @@
 * @Author: vance
 * @Date:   2017-07-23 17:30:10
 * @Last Modified by:   vance
-* @Last Modified time: 2017-07-30 15:07:50
+* @Last Modified time: 2017-08-02 18:13:58
 */
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -15,6 +15,9 @@ import registerServiceWorker from './registerServiceWorker';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 ReactDOM.render(<Router>
                   <div>
+                    <Route exact
+                           path="/login"
+                           component={ Login } />
                     <Route exact
                            path="/"
                            component={ Login } />

@@ -2,14 +2,15 @@
 * @Author: vance
 * @Date:   2017-07-28 17:10:19
 * @Last Modified by:   vance
-* @Last Modified time: 2017-07-30 15:11:59
+* @Last Modified time: 2017-08-02 18:14:10
 */
 
 import React, { Component } from 'react';
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 import { Row, Col } from 'antd';
 import './Home.css';
-import EditableTable from '../components/EditableTable'
+import UsersList from '../components/UsersList'
+import { Link } from 'react-router-dom'
 const {SubMenu} = Menu;
 
 const MenuItemGroup = Menu.ItemGroup;
@@ -50,7 +51,9 @@ class AdminHome extends Component {
                     修改密码
                   </Menu.Item>
                   <Menu.Item key="setting:3">
-                    注销
+                    <Link to="/login">
+                      注销
+                    </Link>
                   </Menu.Item>
                 </SubMenu>
               </Menu>
@@ -117,6 +120,7 @@ class AdminHome extends Component {
               </Menu>
             </Sider>
             <Content style={ { padding: '0 24px', minHeight: 280 } }>
+              <UsersList></UsersList>
             </Content>
           </Layout>
         </Content>

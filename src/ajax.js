@@ -2,11 +2,9 @@
  * @Author: vance
  * @Date:   2017-08-02 00:23:09
  * @Last Modified by:   vance
- * @Last Modified time: 2017-08-02 01:37:06
+ * @Last Modified time: 2017-08-02 15:44:45
  */
 const ajax = {};
-
-ajax.post = function(url, params, type) {
 const cb = (res) => {
   if (res.status === 401) {
     return Promise.reject('Unauthorized.');
@@ -23,6 +21,19 @@ const cb = (res) => {
     return json;
   }
 };
+ajax.get = function(url, params) {
+return fetch(url, {
+  method: 'GET',
+  body: JSON.stringify(params),
+  headers: {
+    "Content-Type": "application/json",
+    'Access-Token': localStorage.getItem('access_token') || ''
+  }
+})
+  .then(cb)
+}
+ajax.post = function(url, params, type) {
+
 if (type == "json") {
   return fetch(url, {
     method: 'POST',

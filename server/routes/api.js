@@ -2,7 +2,7 @@
  * @Author: YangZhou
  * @Date:   2017-07-08 15:55:44
  * @Last Modified by:   vance
- * @Last Modified time: 2017-08-02 01:29:32
+ * @Last Modified time: 2017-08-02 18:21:35
  */
 'use strict';
 var express = require('express');
@@ -19,7 +19,11 @@ app.set('jwtTokenSecret', '$$dong.mom@2335');
 router.get('/username', [bodyParser.json(), jwtauth], function(req, res, next) {
   return res.jsonp(req.user);
 });
-
+router.get('/users', [bodyParser.json(), jwtauth], function(req, res, next) {
+  User.find(function(err, users) {
+    return res.json(users)
+  })
+});
 function authUser(user, res) {
   var expires = moment().add('days', 30).valueOf();
   // User has authenticated OK
@@ -33,8 +37,31 @@ function authUser(user, res) {
   }
   );
 }
-router.post('/user', [bodyParser.json(), jwtauth], function(req, res, next) {
-  var _id = req.body._id;
+
+router.post('/del_user/:_id', [bodyParser.json(), jwtauth], function(req, res, next) {
+  User.remove({
+    _id: req.params._id
+  }, function(err) {
+    return res.json({
+      status: 200
+    })
+  })
+})
+
+router.post('/add_user', [bodyParser.json(), jwtauth], function(req, res, next) {
+  var user = new User();
+  for (var key in req.body) {
+    user[key] = req.body[key];
+  }
+  user.save(function(err, user) {
+    return res.json({
+      status: 200,
+      user: user
+    })
+  })
+})
+router.post('/user/:_id', [bodyParser.json(), jwtauth], function(req, res, next) {
+  var _id = req.params._id;
   if (!_id) {
     // user not found
     return res.json({
