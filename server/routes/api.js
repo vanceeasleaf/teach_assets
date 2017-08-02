@@ -2,7 +2,7 @@
  * @Author: YangZhou
  * @Date:   2017-07-08 15:55:44
  * @Last Modified by:   vance
- * @Last Modified time: 2017-08-03 02:42:39
+ * @Last Modified time: 2017-08-03 02:51:17
  */
 'use strict';
 var express = require('express');
@@ -28,9 +28,12 @@ router.get('/users', [bodyParser.json(), jwtauth], function(req, res, next) {
   })
 });
 router.get('/files', [bodyParser.json(), jwtauth], function(req, res, next) {
-  File.find({
+  var filter = {
     userid: req.user._id
-  }, function(err, files) {
+  };
+  if (req.user.course == "paike")
+    filter = {};
+  File.find(filter, function(err, files) {
     return res.json(files)
   })
 });
