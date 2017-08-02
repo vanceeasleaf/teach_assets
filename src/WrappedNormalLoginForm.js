@@ -2,7 +2,7 @@
 * @Author: vance
 * @Date:   2017-07-24 11:23:39
 * @Last Modified by:   vance
-* @Last Modified time: 2017-08-02 18:35:31
+* @Last Modified time: 2017-08-02 20:14:32
 */
 
 
@@ -32,7 +32,7 @@ class NormalLoginForm extends Component {
               path = "/admin_home";
             if (data.user.course == "paike")
               path = "/paike_home";
-            localStorage.setItem('user', JSON.stringfy(data.user));
+            localStorage.setItem('user', JSON.stringify(data.user));
             this.context.router.history.push(path);
           }.bind(this))
       //  .then(json => dispatch(receivePosts(json)))

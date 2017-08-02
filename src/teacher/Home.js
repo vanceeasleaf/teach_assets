@@ -2,7 +2,7 @@
 * @Author: vance
 * @Date:   2017-07-28 17:10:19
 * @Last Modified by:   vance
-* @Last Modified time: 2017-07-30 15:00:03
+* @Last Modified time: 2017-08-02 20:15:52
 */
 
 import React, { Component } from 'react';
@@ -15,6 +15,19 @@ const {SubMenu} = Menu;
 const MenuItemGroup = Menu.ItemGroup;
 const {Header, Content, Footer, Sider} = Layout;
 class TeacherHome extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      realname: ''
+    }
+  }
+  componentDidMount() {
+    var user = localStorage.getItem('user');
+    user = JSON.parse(user);
+    this.setState({
+      realname: user.realname
+    })
+  }
   render() {
     return (
       <Layout className="teacher-home">
@@ -42,7 +55,7 @@ class TeacherHome extends Component {
                     mode="horizontal"
                     defaultSelectedKeys={ ['1'] }
                     style={ { lineHeight: '64px' } }>
-                <SubMenu title={ <span>欢迎您，管理员</span> }>
+                <SubMenu title={ <span>欢迎您，{ this.state.realname }</span> }>
                   <Menu.Item key="setting:2">
                     注销
                   </Menu.Item>
