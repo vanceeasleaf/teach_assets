@@ -2,7 +2,7 @@
 * @Author: vance
 * @Date:   2017-07-28 17:10:19
 * @Last Modified by:   vance
-* @Last Modified time: 2017-08-02 20:15:52
+* @Last Modified time: 2017-08-03 00:00:22
 */
 
 import React, { Component } from 'react';
@@ -10,6 +10,7 @@ import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 import { Row, Col } from 'antd';
 import './Home.css';
 import EditableTable from '../components/EditableTable'
+import { Link } from 'react-router-dom'
 const {SubMenu} = Menu;
 
 const MenuItemGroup = Menu.ItemGroup;
@@ -57,7 +58,9 @@ class TeacherHome extends Component {
                     style={ { lineHeight: '64px' } }>
                 <SubMenu title={ <span>欢迎您，{ this.state.realname }</span> }>
                   <Menu.Item key="setting:2">
-                    注销
+                    <Link to="/login">
+                      注销
+                    </Link>
                   </Menu.Item>
                 </SubMenu>
               </Menu>

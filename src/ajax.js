@@ -2,7 +2,7 @@
  * @Author: vance
  * @Date:   2017-08-02 00:23:09
  * @Last Modified by:   vance
- * @Last Modified time: 2017-08-02 15:44:45
+ * @Last Modified time: 2017-08-03 01:59:56
  */
 const ajax = {};
 const cb = (res) => {
@@ -27,6 +27,15 @@ return fetch(url, {
   body: JSON.stringify(params),
   headers: {
     "Content-Type": "application/json",
+    'Access-Token': localStorage.getItem('access_token') || ''
+  }
+})
+  .then(cb)
+}
+ajax.download = function(url) {
+return fetch(url, {
+  method: 'GET',
+  headers: {
     'Access-Token': localStorage.getItem('access_token') || ''
   }
 })

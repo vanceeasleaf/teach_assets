@@ -2,12 +2,13 @@
 * @Author: vance
 * @Date:   2017-07-30 10:58:04
 * @Last Modified by:   vance
-* @Last Modified time: 2017-07-30 11:20:34
+* @Last Modified time: 2017-08-03 02:00:10
 */
 
 
 import React from 'react';
 import { Table, Input, Icon, Button, Popconfirm, Upload } from 'antd';
+import ajax from '../ajax'
 import './EditableTable.css';
 class EditableCell extends React.Component {
   state = {
@@ -63,26 +64,26 @@ export default class EditableTable extends React.Component {
     super(props);
     this.columns = [{
       title: '文件名',
-      dataIndex: 'name',
-      width: '30%',
-      render: (text, record, index) => (
-        <EditableCell value={ text } onChange={ this.onCellChange(index, 'name') } />
-      ),
+      dataIndex: 'filename',
+      width: '30%'
     }, {
       title: '备注',
       dataIndex: 'discript',
+      render: (text, record, index) => (
+        <EditableCell value={ text } onChange={ this.onCellChange(index, 'discript') } />
+      ),
     }, {
       title: '操作',
       dataIndex: 'operation',
       render: (text, record, index) => {
         return (
-        this.state.dataSource.length > 1 ?
+        this.state.dataSource.length > 0 ?
           (
           <div>
             <Popconfirm title="Sure to delete?" onConfirm={ () => this.onDelete(index) }>
-              <a href="#">删除</a>
+              <a>删除</a>
             </Popconfirm>
-            <a href="#" style={ { marginLeft: 10 } }>下载</a>
+            <a style={ { marginLeft: 10 } } onClick={ () => this.download(index) }>下载</a>
           </div>
           ) : null
         );
@@ -90,55 +91,77 @@ export default class EditableTable extends React.Component {
     }];
 
     this.state = {
-      dataSource: [{
-        key: '0',
-        name: 'Edward King 0',
-        age: '32',
-        address: 'London, Park Lane no. 0',
-      }, {
-        key: '1',
-        name: 'Edward King 1',
-        age: '32',
-        address: 'London, Park Lane no. 1',
-      }],
-      count: 2,
+      dataSource: []
     };
+  }
+  download = (index) => {
+    const dataSource = [...this.state.dataSource];
+    var _id = dataSource[index]._id;
+    if (!_id) {
+      alert('error _id');return;
+    }
+    ajax.download('http://localhost:3010/api/download/' + _id)
+  }
+  componentDidMount() {
+    ajax.get('http://localhost:3010/api/files').then(function(data) {
+      this.setState({
+        dataSource: data
+      })
+    }.bind(this))
   }
   onCellChange = (index, key) => {
     return (value) => {
       const dataSource = [...this.state.dataSource];
-      dataSource[index][key] = value;
-      this.setState({
-        dataSource
-      });
+      var _id = dataSource[index]._id;
+      if (!_id) {
+        alert('error _id');return;
+      }
+      ajax.post('http://localhost:3010/api/file/' + _id, {
+        discript: value
+      }).then(function(file) {
+        dataSource[index][key] = file[key];this.setState({
+          dataSource
+        });
+      }.bind(this))
+
     };
   }
   onDelete = (index) => {
     const dataSource = [...this.state.dataSource];
-    dataSource.splice(index, 1);
-    this.setState({
-      dataSource
-    });
+    var _id = dataSource[index]._id;
+    if (!_id) {
+      alert('error _id');return;
+    }
+    ajax.post('http://localhost:3010/api/del_file/' + _id).then(function() {
+      dataSource.splice(index, 1);
+      this.setState({
+        dataSource
+      });
+    }.bind(this))
+
   }
-  handleAdd = () => {
-    const {count, dataSource} = this.state;
-    const newData = {
-      key: count,
-      name: `Edward King ${count}`,
-      age: 32,
-      address: `London, Park Lane no. ${count}`,
-    };
+  handleUpload = (info) => {
+    console.log(info);
+    if (info.file.status != 'done') return;
+    console.log(info.file)
     this.setState({
-      dataSource: [...dataSource, newData],
-      count: count + 1,
+      dataSource: [...this.state.dataSource, info.file.response]
     });
   }
   render() {
     const {dataSource} = this.state;
     const columns = this.columns;
+    const props = {
+      action: 'http://localhost:3010/api/upload',
+      showUploadList: false,
+      headers: {
+        'Access-Token': localStorage.getItem('access_token') || ''
+      },
+      onChange: this.handleUpload
+    };
     return (
       <div>
-        <Upload>
+        <Upload {...props}>
           <Button className="editable-add-btn">
             上传文件
           </Button>
