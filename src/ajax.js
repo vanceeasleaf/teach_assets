@@ -2,7 +2,7 @@
  * @Author: vance
  * @Date:   2017-08-02 00:23:09
  * @Last Modified by:   vance
- * @Last Modified time: 2017-08-03 01:59:56
+ * @Last Modified time: 2017-08-03 18:04:06
  */
 const ajax = {};
 const cb = (res) => {
@@ -32,14 +32,22 @@ return fetch(url, {
 })
   .then(cb)
 }
-ajax.download = function(url) {
+ajax.download = function(url, filename) {
+console.log(filename);
 return fetch(url, {
   method: 'GET',
   headers: {
     'Access-Token': localStorage.getItem('access_token') || ''
   }
-})
-  .then(cb)
+}).then(res => res.blob().then(blob => {
+  var a = document.createElement('a');
+  var url = window.URL.createObjectURL(blob);
+  filename = filename || 'myfile';
+  a.href = url;
+  a.download = filename;
+  a.click();
+  window.URL.revokeObjectURL(url);
+}))
 }
 ajax.post = function(url, params, type) {
 

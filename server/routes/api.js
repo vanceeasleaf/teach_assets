@@ -2,7 +2,7 @@
  * @Author: YangZhou
  * @Date:   2017-07-08 15:55:44
  * @Last Modified by:   vance
- * @Last Modified time: 2017-08-03 10:20:24
+ * @Last Modified time: 2017-08-03 17:12:49
  */
 'use strict';
 var express = require('express');
@@ -14,6 +14,7 @@ var bodyParser = require('body-parser');
 var jwtauth = require('../middleware/jwtauth')
 var models = require('../models');
 var multiparty = require('multiparty');
+var path = require('path');
 var fs = require('fs');
 var User = models.User;
 var File = models.File;
@@ -52,7 +53,17 @@ router.get('/download/:_id', [bodyParser.json(), jwtauth], function(req, res, ne
     _id: req.params._id
   }, function(err, file) {
     if (file.path) {
-      return res.download(file.path);
+
+      var headers = {
+        'Content-Disposition': "attachment;filename=" + file.filename,
+        'Content-Type': 'application/binary'
+      }
+
+      res.header("Content-Type", "application/binary");
+      res.attachment(file.filename)
+      return res.sendFile(path.resolve(file.path), {
+        hearders: headers
+      });
     }
     else return res.sendStatus(404);
   })

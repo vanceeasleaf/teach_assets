@@ -2,7 +2,7 @@
 * @Author: vance
 * @Date:   2017-07-30 10:58:04
 * @Last Modified by:   vance
-* @Last Modified time: 2017-08-03 10:05:01
+* @Last Modified time: 2017-08-03 18:03:05
 */
 
 
@@ -100,7 +100,9 @@ export default class EditableTable extends React.Component {
     if (!_id) {
       alert('error _id');return;
     }
-    ajax.download('/api/download/' + _id)
+    var filename = dataSource[index].filename;
+    ajax.download('/api/download/' + _id, filename)
+    return '/api/download/' + _id
   }
   componentDidMount() {
     ajax.get('/api/files').then(function(data) {
