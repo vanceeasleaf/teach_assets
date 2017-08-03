@@ -10,7 +10,8 @@ module.exports = {
       name: 'teach_assets_fe',
       script: 'scripts/start.js',
       env: {
-        COMMON_VARIABLE: 'true'
+        COMMON_VARIABLE: 'true',
+        DANGEROUSLY_DISABLE_HOST_CHECK: 'true'
       },
       env_production: {
         NODE_ENV: 'production'
