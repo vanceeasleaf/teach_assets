@@ -2,7 +2,7 @@
  * @Author: YangZhou
  * @Date:   2017-07-08 15:55:44
  * @Last Modified by:   vance
- * @Last Modified time: 2017-08-03 02:51:17
+ * @Last Modified time: 2017-08-03 10:20:24
  */
 'use strict';
 var express = require('express');
@@ -18,6 +18,16 @@ var fs = require('fs');
 var User = models.User;
 var File = models.File;
 app.set('jwtTokenSecret', '$$dong.mom@2335');
+router.get('/init', function(req, res, next) {
+  var user = new User({
+    username: 'admin',
+    password: 'admin',
+    realname: '管理员',
+    course: 'admin'
+  });
+  user.save();
+  res.send('Data inited');
+});
 /* GET home page. */
 router.get('/username', [bodyParser.json(), jwtauth], function(req, res, next) {
   return res.jsonp(req.user);
