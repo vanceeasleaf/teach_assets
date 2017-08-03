@@ -2,7 +2,7 @@
 * @Author: vance
 * @Date:   2017-07-30 10:58:04
 * @Last Modified by:   vance
-* @Last Modified time: 2017-08-03 02:00:10
+* @Last Modified time: 2017-08-03 10:05:01
 */
 
 
@@ -100,10 +100,10 @@ export default class EditableTable extends React.Component {
     if (!_id) {
       alert('error _id');return;
     }
-    ajax.download('http://localhost:3010/api/download/' + _id)
+    ajax.download('/api/download/' + _id)
   }
   componentDidMount() {
-    ajax.get('http://localhost:3010/api/files').then(function(data) {
+    ajax.get('/api/files').then(function(data) {
       this.setState({
         dataSource: data
       })
@@ -116,7 +116,7 @@ export default class EditableTable extends React.Component {
       if (!_id) {
         alert('error _id');return;
       }
-      ajax.post('http://localhost:3010/api/file/' + _id, {
+      ajax.post('/api/file/' + _id, {
         discript: value
       }).then(function(file) {
         dataSource[index][key] = file[key];this.setState({
@@ -132,7 +132,7 @@ export default class EditableTable extends React.Component {
     if (!_id) {
       alert('error _id');return;
     }
-    ajax.post('http://localhost:3010/api/del_file/' + _id).then(function() {
+    ajax.post('/api/del_file/' + _id).then(function() {
       dataSource.splice(index, 1);
       this.setState({
         dataSource
@@ -152,7 +152,7 @@ export default class EditableTable extends React.Component {
     const {dataSource} = this.state;
     const columns = this.columns;
     const props = {
-      action: 'http://localhost:3010/api/upload',
+      action: '/api/upload',
       showUploadList: false,
       headers: {
         'Access-Token': localStorage.getItem('access_token') || ''

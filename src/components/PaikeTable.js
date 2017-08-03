@@ -2,7 +2,7 @@
 * @Author: vance
 * @Date:   2017-07-30 10:58:04
 * @Last Modified by:   vance
-* @Last Modified time: 2017-08-03 02:49:38
+* @Last Modified time: 2017-08-03 10:04:50
 */
 
 
@@ -94,10 +94,10 @@ export default class PaikeTable extends React.Component {
     if (!_id) {
       alert('error _id');return;
     }
-    ajax.download('http://localhost:3010/api/download/' + _id)
+    ajax.download('/api/download/' + _id)
   }
   componentDidMount() {
-    ajax.get('http://localhost:3010/api/files').then(function(data) {
+    ajax.get('/api/files').then(function(data) {
       this.setState({
         dataSource: data
       })
@@ -110,7 +110,7 @@ export default class PaikeTable extends React.Component {
       if (!_id) {
         alert('error _id');return;
       }
-      ajax.post('http://localhost:3010/api/file/' + _id, {
+      ajax.post('/api/file/' + _id, {
         discript: value
       }).then(function(file) {
         dataSource[index][key] = file[key];this.setState({

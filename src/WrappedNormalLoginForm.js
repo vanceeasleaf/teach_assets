@@ -2,7 +2,7 @@
 * @Author: vance
 * @Date:   2017-07-24 11:23:39
 * @Last Modified by:   vance
-* @Last Modified time: 2017-08-02 20:14:32
+* @Last Modified time: 2017-08-03 10:01:50
 */
 
 
@@ -24,7 +24,7 @@ class NormalLoginForm extends Component {
 
 
 
-        ajax.post('http://localhost:3010/api/auth', values)
+        ajax.post('/api/auth', values)
           .then(function(data) {
             console.log(data);
             var path = "teacher_home";

@@ -2,7 +2,7 @@
 * @Author: vance
 * @Date:   2017-07-30 10:58:04
 * @Last Modified by:   vance
-* @Last Modified time: 2017-08-02 18:31:04
+* @Last Modified time: 2017-08-03 10:04:36
 */
 
 
@@ -115,7 +115,7 @@ export default class UsersList extends React.Component {
     };
   }
   componentWillMount() {
-    ajax.get('http://localhost:3010/api/users').then(function(data) {
+    ajax.get('/api/users').then(function(data) {
       this.setState({
         dataSource: data
       })
@@ -131,7 +131,7 @@ export default class UsersList extends React.Component {
       }
       var user = {};
       user[key] = value;
-      ajax.post('http://localhost:3010/api/user/' + _id, user).then(function(data) {
+      ajax.post('/api/user/' + _id, user).then(function(data) {
         dataSource[index] = data.user;
         this.setState({
           dataSource
@@ -145,7 +145,7 @@ export default class UsersList extends React.Component {
     if (!_id) {
       alert("id error");
     }
-    ajax.post('http://localhost:3010/api/del_user/' + _id).then(function(data) {
+    ajax.post('/api/del_user/' + _id).then(function(data) {
       dataSource.splice(index, 1);
       this.setState({
         dataSource
@@ -163,7 +163,7 @@ export default class UsersList extends React.Component {
   commitNewData = (newData) => {
 
     const {dataSource} = this.state;
-    ajax.post('http://localhost:3010/api/add_user', newData).then(function(data) {
+    ajax.post('/api/add_user', newData).then(function(data) {
       this.setState({
         dataSource: [...dataSource, data.user]
       })
